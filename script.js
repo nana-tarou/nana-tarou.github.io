@@ -91,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setActiveLangLink(lang);
     localStorage.setItem('site-lang', lang);
+    // refresh last-updated display so date formatting matches language
+    updateLastUpdated();
   }
 
   // wire up language links
@@ -132,6 +134,51 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'site-lang') {
       updateLastUpdated();
     }
+  });
+
+  // Open <details> elements that correspond to a hash target so linked content is visible
+  function openDetailsForHash(hash) {
+    if (!hash) return;
+    const id = hash.replace('#', '');
+    // try to find a details inside the section with this id
+    const details = document.querySelector(`#${id} details`);
+    if (details) {
+      details.open = true;
+      // If there are nested details and the hash points to a nested element, open those too
+      const nested = document.querySelectorAll(`#${id} details details`);
+      nested.forEach(d => (d.open = true));
+      // scroll the section into view
+      const section = document.getElementById(id);
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // fallback: if the hash points to an element directly, scroll to it
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // handle hash on load
+  if (location.hash) {
+    // small timeout to allow browser to render details elements
+    setTimeout(() => openDetailsForHash(location.hash), 50);
+  }
+
+  // respond to future hash changes
+  window.addEventListener('hashchange', function() {
+    openDetailsForHash(location.hash);
+  });
+
+  // Make sitemap links explicitly open matching details and update the hash without relying on default scrolling-only behavior
+  const sitemapLinks = document.querySelectorAll('.sitemap a');
+  sitemapLinks.forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      if (!href) return;
+      // update history so the hash appears in URL
+      history.pushState(null, '', href);
+      openDetailsForHash(href);
+    });
   });
 
   // remove legacy header click behaviour (was only for demo)
