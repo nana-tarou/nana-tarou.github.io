@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
       papers: '論文',
       preprint: 'プレプリント',
       talks: '講演記録',
+      otherMaterials: 'その他資料',
       cv: '履歴',
       collaborators: '共同研究者',
       sitemap: 'サイトマップ',
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       papers: 'Papers',
       preprint: 'Preprints',
       talks: 'Talks',
+      otherMaterials: 'Other materials',
       cv: 'CV',
       collaborators: 'Collaborators',
       sitemap: 'Sitemap',
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
       papers: '论文',
       preprint: '预印本',
       talks: '演讲记录',
+      otherMaterials: '其他资料',
       cv: '履历',
       collaborators: '合作者',
       sitemap: '网站地图',
@@ -55,18 +58,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // set html lang attribute
     document.documentElement.lang = (lang === 'zh') ? 'zh' : (lang === 'en' ? 'en' : 'ja');
 
-    // change summaries for top-level sections
+    // change summaries / headings for top-level sections
     Object.keys(sectionMap).forEach(id => {
-      const el = document.querySelector(`#${id} summary`);
+      // prefer <summary> (collapsible) but fall back to an explicit heading with .section-title
+      let el = document.querySelector(`#${id} summary`);
+      if (!el) el = document.querySelector(`#${id} .section-title`);
       if (el) el.textContent = translations[lang][sectionMap[id]] || el.textContent;
     });
 
     // papers -> inner preprint summary (if present)
-    const preprintSummary = document.querySelector('#papers details summary');
+    const preprintSummary = document.querySelector('#papers details details summary');
     if (preprintSummary) {
-      // If the inner details exists, ensure its summary is the preprint label
-      const inner = document.querySelector('#papers details details summary');
-      if (inner) inner.textContent = translations[lang].preprint || inner.textContent;
+      preprintSummary.textContent = translations[lang].preprint || preprintSummary.textContent;
+    }
+
+    // talks -> inner "other materials" nested details
+    const talksInner = document.querySelector('#talks details details summary');
+    if (talksInner) {
+      talksInner.textContent = translations[lang].otherMaterials || talksInner.textContent;
     }
 
     // sitemap title
