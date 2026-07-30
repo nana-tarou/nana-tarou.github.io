@@ -8,18 +8,102 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to nana-tarou's Site</h1>
-    <p>静的サイトへようこそ</p>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>nana-tarou's Site</h1>
+        <p class="subtitle">静的サイトへようこそ</p>
+      </div>
+      <nav class="lang-switch" aria-label="言語切替">
+        <a href="#" data-lang="ja" class="lang active">JP</a>
+        <a href="#" data-lang="en" class="lang">EN</a>
+        <a href="#" data-lang="zh" class="lang">CN</a>
+      </nav>
+    </div>
   </header>
   <main>
-    <section>
-      <h2>自己紹介</h2>
-      <p>GitHub Pages で作成した個人サイトです。</p>
+    <section id="profile">
+      <details open>
+        <summary>プロフィール</summary>
+        <div class="content">
+          <p>GitHub Pages で作成した個人サイトです。</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="research">
+      <details>
+        <summary>研究の興味</summary>
+        <div class="content">
+          <p>ここに研究の興味を記載します。</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="papers">
+      <details>
+        <summary>論文</summary>
+        <div class="content">
+          <details>
+            <summary>プレプリント</summary>
+            <ul>
+              <li>プレプリント A — <em>タイトルなど</em></li>
+            </ul>
+          </details>
+          <p>その他の論文一覧はここに追加されます。</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="talks">
+      <details>
+        <summary>講演記録</summary>
+        <div class="content">
+          <ul>
+            <li>講演 2026 — カンファレンス名</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section id="cv">
+      <details>
+        <summary>履歴</summary>
+        <div class="content">
+          <p>職歴・学歴などを記載します。</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="collaborators">
+      <details>
+        <summary>共同研究者</summary>
+        <div class="content">
+          <ul>
+            <li>共同研究者 A — 所属</li>
+          </ul>
+        </div>
+      </details>
     </section>
   </main>
+
   <footer>
-    <p>&copy; 2026 nana-tarou. All rights reserved.</p>
+    <div class="footer-inner">
+      <div class="last-updated">最終更新: <span id="last-updated">—</span></div>
+      <nav class="sitemap" aria-label="サイトマップ">
+        <h3>サイトマップ</h3>
+        <ul>
+          <li><a href="#profile">プロフィール</a></li>
+          <li><a href="#research">研究の興味</a></li>
+          <li><a href="#papers">論文</a></li>
+          <li><a href="#talks">講演記録</a></li>
+          <li><a href="#cv">履歴</a></li>
+          <li><a href="#collaborators">共同研究者</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 nana-tarou. All rights reserved.</p>
+    </div>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
