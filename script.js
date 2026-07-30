@@ -100,8 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setActiveLangLink(lang);
     localStorage.setItem('site-lang', lang);
-    // refresh last-updated display so date formatting matches language
-    updateLastUpdated();
+    // Do not call updateLastUpdated() here because lastUpdatedSpan may not be initialized yet.
   }
 
   // wire up language links
@@ -110,6 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       const lang = a.dataset.lang;
       applyLanguage(lang);
+      // update the formatted last-updated date after changing language (safe at interaction time)
+      if (typeof updateLastUpdated === 'function') {
+        try { updateLastUpdated(); } catch (err) { /* ignore if something unexpected */ }
+      }
     });
   });
 
