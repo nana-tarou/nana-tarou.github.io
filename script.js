@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
       otherMaterials: 'その他資料',
       cv: '履歴',
       collaborators: '共同研究者',
+      othercites: 'その他のサイト',
       sitemap: 'サイトマップ',
       lastUpdatedLabel: '最終更新'
     },
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
       otherMaterials: 'Other materials',
       cv: 'CV',
       collaborators: 'Collaborators',
+      othercites: "Other cites",
       sitemap: 'Sitemap',
       lastUpdatedLabel: 'Last updated'
     },
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
       otherMaterials: '其他资料',
       cv: '履历',
       collaborators: '合作者',
+      othercites: "Other cites",
       sitemap: '网站地图',
       lastUpdatedLabel: '最后更新'
     }
