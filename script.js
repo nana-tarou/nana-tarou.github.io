@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     research: 'research',
     papers: 'papers',
     talks: 'talks',
+    'other-materials': 'otherMaterials',
     cv: 'cv',
     collaborators: 'collaborators'
   };
@@ -72,11 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
       preprintSummary.textContent = translations[lang].preprint || preprintSummary.textContent;
     }
 
-    // talks -> inner "other materials" nested details
-    const talksInner = document.querySelector('#talks details details summary');
-    if (talksInner) {
-      talksInner.textContent = translations[lang].otherMaterials || talksInner.textContent;
-    }
 
     // sitemap title
     const sitemapHeading = document.querySelector('.sitemap h3');
